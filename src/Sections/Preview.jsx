@@ -9,6 +9,7 @@ const Preview = ({
   iconRotation,
   iconColor,
   logoBgColor,
+  imageOpacity,
 }) => {
   return (
     <div className="border-r-2 flex items-center justify-center w-full h-full">
@@ -21,6 +22,7 @@ const Preview = ({
         iconRotation={iconRotation}
         iconColor={iconColor}
         logoBgColor={logoBgColor}
+        imageOpacity={imageOpacity}
       />
     </div>
   );

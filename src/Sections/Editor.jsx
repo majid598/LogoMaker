@@ -20,6 +20,8 @@ const Editor = ({
   setLogoBgColor,
   iconColor,
   setIconColor,
+  setImageOpacity,
+  imageOpacity,
 }) => {
   return (
     <div className="w-full h-full px-4 pt-4">
@@ -38,6 +40,8 @@ const Editor = ({
             setLogoBgColor={setLogoBgColor}
             iconColor={iconColor}
             setIconColor={setIconColor}
+            imageOpacity={imageOpacity}
+            setImageOpacity={setImageOpacity}
           />
         </>
       )}

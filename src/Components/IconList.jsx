@@ -18,6 +18,8 @@ const IconList = ({
   setLogoBgColor,
   iconColor,
   setIconColor,
+  setImageOpacity,
+  imageOpacity,
 }) => {
   const [openIconList, setOpenIconList] = useState(false);
   const imageHandler = (e) => {
@@ -63,6 +65,7 @@ const IconList = ({
                       setLogoImage("");
                       localStorage.setItem("selected-icon", icon);
                       localStorage.removeItem("logo-image");
+                      localStorage.removeItem("image-opacity");
                     }}
                     className="p-2 rounded-md border"
                   >
@@ -120,9 +123,33 @@ const IconList = ({
           className="range w-full"
         />
       </div>
-      <div className="pb-20 mt-4">
-        <ColorPicker value={iconColor} onChange={setIconColor} />
-      </div>
+      {!logoImage && (
+        <div className="pb-20 mt-4">
+          <ColorPicker value={iconColor} onChange={setIconColor} />
+        </div>
+      )}
+      {logoImage && (
+        <div>
+          <div className="mt-5">
+            <div className="w-full flex items-center justify-between">
+              <label>Opacity</label>
+              <span>{localStorage.getItem("image-opacity") || 100}</span>
+            </div>
+            <input
+              type="range"
+              value={imageOpacity}
+              min={0}
+              max={1}
+              step="0.01"
+              onChange={(e) => {
+                setImageOpacity(e.target.value);
+                localStorage.setItem("image-opacity", imageOpacity);
+              }}
+              className="range w-full"
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

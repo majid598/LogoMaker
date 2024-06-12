@@ -29,6 +29,9 @@ const LogoMaker = () => {
   const [logoBgColor, setLogoBgColor] = useState(
     localStorage.getItem("logo-bg-color") || "white"
   );
+  const [imageOpacity, setImageOpacity] = useState(
+    localStorage.getItem("image-opacity") || 100
+  );
 
   useEffect(() => {
     localStorage.setItem("icon-color", iconColor);
@@ -60,6 +63,8 @@ const LogoMaker = () => {
           setLogoBgColor={setLogoBgColor}
           iconColor={iconColor}
           setIconColor={setIconColor}
+          imageOpacity={imageOpacity}
+          setImageOpacity={setImageOpacity}
         />
       </div>
       <div className="w-full h-full">
@@ -72,6 +77,7 @@ const LogoMaker = () => {
           iconRotation={iconRotation}
           iconColor={iconColor}
           logoBgColor={logoBgColor}
+          imageOpacity={imageOpacity}
         />
       </div>
       <div className="w-full h-full pt-4">adds</div>

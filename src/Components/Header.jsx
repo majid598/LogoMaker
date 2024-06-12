@@ -1,10 +1,6 @@
-import { useState } from "react";
-import { IoMdClose } from "react-icons/io";
 import { Link } from "react-router-dom";
 
-const Header = ({ download }) => {
-  const [popup, setPopup] = useState(false);
-
+const Header = ({ download, setPopup }) => {
   return (
     <>
       <header className="w-full fixed top-0 left-0">
@@ -29,22 +25,6 @@ const Header = ({ download }) => {
           )}
         </nav>
       </header>
-      {popup && (
-        <>
-          <div
-            onClick={() => setPopup(false)}
-            className="w-full h-screen bg-black/60 fixed top-0 left-0 z-[99] flex items-center justify-center"
-          ></div>
-          <div className="bg-gray-900 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[999] rounded-2xl px-20 py-10 border-2 w-[30rem] min-h-[40vh]">
-            <button
-              onClick={() => setPopup(false)}
-              className="absolute top-4 right-4 border p-1 text-2xl rounded-md"
-            >
-              <IoMdClose />
-            </button>
-          </div>
-        </>
-      )}
     </>
   );
 };
