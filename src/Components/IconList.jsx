@@ -48,7 +48,7 @@ const IconList = ({
             {selectedIcon ? <Icon name={selectedIcon} /> : <Smile />}
           </button>
           {openIconList && (
-            <div className="w-[20.5rem] h-[60vh] rounded-xl absolute overflow-y-scroll left-0 top-24 bg-gray-900 border-2">
+            <div className="w-[20.5rem] z-50 h-[60vh] rounded-xl absolute overflow-y-scroll left-0 top-24 bg-gray-900 border-2">
               <button
                 onClick={() => setOpenIconList(false)}
                 className="absolute right-3 top-3 text-2xl p-1 rounded-md border"
@@ -94,7 +94,7 @@ const IconList = ({
         <input
           type="range"
           value={iconSize}
-          min={0}
+          min={18}
           max={512}
           onChange={(e) => {
             setIconSize(e.target.value);

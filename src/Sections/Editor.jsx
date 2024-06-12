@@ -22,7 +22,7 @@ const Editor = ({
   setIconColor,
 }) => {
   return (
-    <div className="w-full h-full px-4">
+    <div className="w-full h-full px-4 pt-4">
       {icons && (
         <>
           <IconList

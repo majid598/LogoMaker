@@ -1,77 +1,26 @@
-import { useEffect, useState } from "react";
-import Editor from "../Sections/Editor";
-import Preview from "../Sections/Preview";
-import Sidebar from "../Sections/Sidebar";
+import { FaPlus } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import Header from "../Components/Header";
 
 const Home = () => {
-  const [icons, setIcons] = useState(true);
-  const [background, setBackground] = useState(false);
-  const [iconsSize, setIconSize] = useState(localStorage.getItem("icon-size"));
-  const [iconRotation, setIconRotation] = useState(
-    localStorage.getItem("icon-rotation")
-  );
-  const [bgRounded, setBgRounded] = useState(
-    localStorage.getItem("bg-rounded")
-  );
-  const [padding, setPadding] = useState(localStorage.getItem("padding"));
-  const [selectedIcon, setSelectedIcon] = useState(
-    localStorage.getItem("selected-icon")
-  );
-  const [logoImage, setLogoImage] = useState(
-    localStorage.getItem("logo-image")
-  );
-  const [iconColor, setIconColor] = useState(
-    localStorage.getItem("icon-color") || "black"
-  );
-  const [logoBgColor, setLogoBgColor] = useState(
-    localStorage.getItem("logo-bg-color") || "white"
-  );
-
-  useEffect(() => {
-    localStorage.setItem("icon-color", iconColor);
-    localStorage.setItem("logo-bg-color", logoBgColor);
-  }, [iconColor, setIconColor, logoBgColor, setLogoBgColor]);
-
+  const name = "Code With raju";
   return (
-    <div className="w-full h-screen bg-gray-900 text-white pt-32 grid grid-col-4">
-      <div className="w-full h-full">
-        <Sidebar setIcons={setIcons} setBackground={setBackground} />
+    <div className="bg-gray-900 px-20 text-white min-h-screen pt-44">
+      <Header />
+      <h1 className="text-3xl font-semibold">{name}&apos;s Logos</h1>
+      <div className="w-full flex flex-wrap mt-10 gap-4 justify-center">
+        {Array(11)
+          .fill()
+          .map((i) => (
+            <div className="w-[15rem] border-2 rounded-sm h-[20vh]"></div>
+          ))}
+        <Link
+          to={"/logo/make"}
+          className="w-[15rem] flex items-center justify-center text-5xl hover:bg-white hover:text-gray-900 transition-all duration-300 border-2 rounded-sm h-[20vh]"
+        >
+          <FaPlus />
+        </Link>
       </div>
-      <div className="w-full h-full overflow-y-scroll">
-        <Editor
-          icons={icons}
-          background={background}
-          iconSize={iconsSize}
-          setIconSize={setIconSize}
-          iconRotation={iconRotation}
-          setIconRotation={setIconRotation}
-          rounded={bgRounded}
-          setRounded={setBgRounded}
-          padding={padding}
-          setPadding={setPadding}
-          selectedIcon={selectedIcon}
-          setSelectedIcon={setSelectedIcon}
-          logoImage={logoImage}
-          setLogoImage={setLogoImage}
-          logoBgColor={logoBgColor}
-          setLogoBgColor={setLogoBgColor}
-          iconColor={iconColor}
-          setIconColor={setIconColor}
-        />
-      </div>
-      <div className="w-full h-full">
-        <Preview
-          logoImage={logoImage}
-          bgRounded={bgRounded}
-          padding={padding}
-          iconSize={iconsSize}
-          selectedIcon={selectedIcon}
-          iconRotation={iconRotation}
-          iconColor={iconColor}
-          logoBgColor={logoBgColor}
-        />
-      </div>
-      <div className="w-full h-full">adds</div>
     </div>
   );
 };

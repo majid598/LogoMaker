@@ -31,7 +31,7 @@ const Sidebar = ({ setIcons, setBackground }) => {
     },
   ];
   return (
-    <div className="w-full h-full border-r-2 flex flex-col items-start px-4">
+    <div className="w-full h-full border-r-2 flex flex-col items-start px-4 pt-4">
       {buttons.map((button) => (
         <button
           onClick={button.handler}

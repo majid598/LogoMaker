@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import Header from "./Header";
 import { Icon } from "./Icons";
+import { Smile } from "lucide-react";
 
 const Logo = ({
   logoImage,
@@ -20,6 +21,7 @@ const Logo = ({
       link.download = "logo.png";
       link.href = dataUrl;
       link.click();
+      localStorage.clear();
     });
   };
   return (
