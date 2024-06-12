@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
+import Add from "../Components/Add";
 import Editor from "../Sections/Editor";
 import Preview from "../Sections/Preview";
 import Sidebar from "../Sections/Sidebar";
-import { Smile } from "lucide-react";
 
 const LogoMaker = () => {
   const [icons, setIcons] = useState(true);
@@ -80,7 +80,9 @@ const LogoMaker = () => {
           imageOpacity={imageOpacity}
         />
       </div>
-      <div className="w-full h-full pt-4">adds</div>
+      <div className="w-full h-full pt-4">
+        <Add />
+      </div>
     </div>
   );
 };
