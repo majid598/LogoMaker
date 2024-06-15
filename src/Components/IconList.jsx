@@ -4,6 +4,7 @@ import ColorPicker from "react-best-gradient-color-picker";
 import { IoMdClose } from "react-icons/io";
 import { iconList } from "../data/icons";
 import { Icon } from "./Icons";
+import { emojis } from "../data/data";
 
 const IconList = ({
   iconSize = 0,
@@ -22,6 +23,8 @@ const IconList = ({
   imageOpacity,
 }) => {
   const [openIconList, setOpenIconList] = useState(false);
+  const [icons, setIcons] = useState(true);
+  const [colorIcons, setColorIcons] = useState(false);
   const imageHandler = (e) => {
     localStorage.removeItem("selected-icon");
     setSelectedIcon("");
@@ -51,27 +54,78 @@ const IconList = ({
           </button>
           {openIconList && (
             <div className="w-[20.5rem] z-[999] h-[60vh] rounded-xl absolute overflow-y-scroll left-0 top-24 bg-gray-900 border-2">
-              <button
-                onClick={() => setOpenIconList(false)}
-                className="absolute right-3 top-3 text-2xl p-1 rounded-md border"
-              >
-                <IoMdClose />
-              </button>
-              <div className="w-full mt-16 flex flex-wrap gap-2 justify-center px-2">
-                {iconList.map((icon) => (
+              <div className="w-full flex justify-between px-4 pt-5">
+                <div className="flex rounded-lg bg-gray-800 overflow-hidden">
                   <button
                     onClick={() => {
-                      setSelectedIcon(icon);
-                      setLogoImage("");
-                      localStorage.setItem("selected-icon", icon);
-                      localStorage.removeItem("logo-image");
-                      localStorage.removeItem("image-opacity");
+                      setIcons(true);
+                      setColorIcons(false);
                     }}
-                    className="p-2 rounded-md border"
+                    className={`px-4 py-3 transition-all duration-300 font-bold ${
+                      icons && "bg-gray-950"
+                    }`}
                   >
-                    <Icon name={icon} />
+                    Icons
                   </button>
-                ))}
+                  <button
+                    onClick={() => {
+                      setIcons(false);
+                      setColorIcons(true);
+                    }}
+                    className={`px-4 py-3 transition-all duration-300 font-bold ${
+                      colorIcons && "bg-gray-950"
+                    }`}
+                  >
+                    Colorful Icons
+                  </button>
+                </div>
+                <button
+                  onClick={() => setOpenIconList(false)}
+                  className="fixed left-[33.5rem] top-[15rem] bg-gray-900 z-[999] text-2xl p-1 rounded-md border"
+                >
+                  <IoMdClose />
+                </button>
+              </div>
+              <div className="w-full mt-6 flex flex-wrap gap-2 justify-center px-2">
+                {icons && (
+                  <>
+                    {iconList.map((icon) => (
+                      <button
+                        onClick={() => {
+                          setSelectedIcon(icon);
+                          setLogoImage("");
+                          localStorage.setItem("selected-icon", icon);
+                          localStorage.removeItem("logo-image");
+                          localStorage.removeItem("image-opacity");
+                        }}
+                        className="p-2 rounded-md border"
+                      >
+                        <Icon name={icon} />
+                      </button>
+                    ))}
+                  </>
+                )}
+                {colorIcons && (
+                  <>
+                    {emojis.map((emoji) => (
+                      <button
+                        onClick={() => {
+                          localStorage.removeItem("selected-icon");
+                          setSelectedIcon("");
+                          setLogoImage(emoji);
+                          localStorage.setItem("logo-image", emoji);
+                        }}
+                        className="p-2 w-11 h-11 rounded-md border"
+                      >
+                        <img
+                          src={emoji}
+                          className="w-full h-full"
+                          alt=""
+                        />
+                      </button>
+                    ))}
+                  </>
+                )}
               </div>
             </div>
           )}

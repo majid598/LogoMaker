@@ -65,7 +65,7 @@ const LogoMaker = () => {
             <button
               onClick={() => setActive((prev) => !prev)}
               className={`fixed top-32 menu-btn hidden ${
-                active ? "left-[22rem]" : "left-0"
+                active ? "left-[21.7rem]" : "left-0"
               } bg-gray-900 rounded-tr-full rounded-br-full trans border-2 border-l-0 z-[999] h-10 py-2 justify-between pl-3 pr-5 flex-col gap-0.5`}
             >
               <span
