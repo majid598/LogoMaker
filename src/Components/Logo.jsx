@@ -37,7 +37,7 @@ const Logo = ({
       <Header download={downloadImage} setPopup={setPopup} />
       <div
         style={{ padding: `${padding}px` }}
-        className="border w-[27rem] h-[27rem]"
+        className="logo border w-[27rem] h-[27rem]"
       >
         <div
           ref={logoRef}
@@ -45,7 +45,7 @@ const Logo = ({
             borderRadius: `${bgRounded}px`,
             backgroundColor: logoBgColor,
           }}
-          className="w-full h-full overflow-hidden"
+          className="w-full h-full overflow-hidden -z-10"
         >
           <div
             style={{ rotate: `${iconRotation}deg` }}

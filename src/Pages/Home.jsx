@@ -1,13 +1,22 @@
 import { FaPlus } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Header from "../Components/Header";
+import { useEffect, useState } from "react";
+import Loader from "../Components/Loader";
+import { user } from "../data/icons";
 
 const Home = () => {
-  const name = "Code With raju";
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 4000);
+  }, [isLoading]);
   return (
     <div className="bg-gray-900 px-20 text-white min-h-screen pt-44">
+      {isLoading && <Loader />}
       <Header />
-      <h1 className="text-3xl font-semibold">{name}&apos;s Logos</h1>
+      <h1 className="text-3xl font-semibold">{user.name}&apos;s Logos</h1>
       <div className="w-full flex flex-wrap mt-10 gap-4 justify-center">
         {Array(11)
           .fill()

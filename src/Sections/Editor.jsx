@@ -24,7 +24,8 @@ const Editor = ({
   imageOpacity,
 }) => {
   return (
-    <div className="w-full h-full px-4 pt-4">
+    <div className="w-full relative h-full px-4 pt-4">
+
       {icons && (
         <>
           <IconList

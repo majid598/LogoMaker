@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
+import { IoMdClose } from "react-icons/io";
 
-const Add = () => {
-  const images = ["add.png", "add2.png", "add3.png", "add4.png"];
+const Add = ({ images, href = "", isClose, onClose }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
@@ -9,12 +9,18 @@ const Add = () => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
     }, 4000);
 
-    return () => clearInterval(intervalId); // Cleanup interval on component unmount
+    return () => clearInterval(intervalId);
   }, [images.length]);
   return (
-    <div className="w-full h-full p-3">
+    <div className={`w-full h-full p-3 relative ${isClose && "hidden"}`}>
+      <button
+        onClick={onClose}
+        className="absolute top-0 right-0 bg-red-600 p-0.5 rounded-md"
+      >
+        <IoMdClose />
+      </button>
       <a
-        href="https://burgerpizzapoint.vercel.app/"
+        href={href}
         target="_blank"
         className="w-full h-full rounded-xl overflow-hidden inline-block"
       >
