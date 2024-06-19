@@ -55,15 +55,18 @@ const IconList = ({
           {openIconList && (
             <div className="w-[20.5rem] z-[999] h-[60vh] rounded-xl absolute overflow-y-scroll left-0 top-24 bg-gray-900 border-2">
               <div className="w-full flex justify-between px-4 pt-5">
-                <div className="flex rounded-lg bg-gray-800 overflow-hidden">
+                <div className="flex relative rounded-lg bg-gray-800 overflow-hidden">
+                  <div
+                    className={`absolute h-full transition-all duration-500 ${
+                      icons ? "w-1/3 left-0" : "w-2/3 left-1/3"
+                    } rounded-lg bg-gray-950`}
+                  ></div>
                   <button
                     onClick={() => {
                       setIcons(true);
                       setColorIcons(false);
                     }}
-                    className={`px-4 py-3 transition-all duration-300 font-bold ${
-                      icons && "bg-gray-950"
-                    }`}
+                    className={`px-4 py-3 transition-all relative duration-300 font-bold`}
                   >
                     Icons
                   </button>
@@ -72,9 +75,7 @@ const IconList = ({
                       setIcons(false);
                       setColorIcons(true);
                     }}
-                    className={`px-4 py-3 transition-all duration-300 font-bold ${
-                      colorIcons && "bg-gray-950"
-                    }`}
+                    className={`px-4 py-3 transition-all relative duration-300 font-bold`}
                   >
                     Colorful Icons
                   </button>
@@ -117,11 +118,7 @@ const IconList = ({
                         }}
                         className="p-2 w-11 h-11 rounded-md border"
                       >
-                        <img
-                          src={emoji}
-                          className="w-full h-full"
-                          alt=""
-                        />
+                        <img src={emoji} className="w-full h-full" alt="" />
                       </button>
                     ))}
                   </>

@@ -3,7 +3,7 @@ import { PencilRuler, BgIcon, UpgradeIcon } from "../Components/Icons";
 import Add from "../Components/Add";
 import { images } from "../data/icons";
 
-const Sidebar = ({ setIcons, setBackground, setUpgrade }) => {
+const Sidebar = ({ setIcons, setBackground, setUpgrade, user }) => {
   const [selected, setSelected] = useState("Icon");
   const [isAddClose, setIsAddClose] = useState(false);
   const buttons = [
@@ -59,12 +59,14 @@ const Sidebar = ({ setIcons, setBackground, setUpgrade }) => {
         </button>
       ))}
       <div className="w-full h-[28rem] mt-20">
-        <Add
-          images={images}
-          href="https://burgerpizzapoint.vercel.app/"
-          isClose={isAddClose}
-          onClose={() => setIsAddClose(true)}
-        />
+        {!user?.isSubscribed && (
+          <Add
+            images={images}
+            href="https://burgerpizzapoint.vercel.app/"
+            isClose={isAddClose}
+            onClose={() => setIsAddClose(true)}
+          />
+        )}
       </div>
     </div>
   );

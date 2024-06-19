@@ -7,7 +7,7 @@ import axios from "axios";
 import { server } from "../main";
 import toast from "react-hot-toast";
 
-const Logo = ({
+const EditLogoC = ({
   logoImage,
   bgRounded,
   padding,
@@ -22,12 +22,13 @@ const Logo = ({
   const [popup, setPopup] = useState(false);
   const [name, setName] = useState("logo");
   const logoRef = useRef(null);
+  const logoId = localStorage.getItem("logoId");
   const downloadImage = async () => {
     const htmlToImage = await import("html-to-image");
     htmlToImage.toPng(logoRef.current).then(function (dataUrl) {
       axios
-        .post(
-          `${server}api/v1/logo/new`,
+        .put(
+          `${server}api/v1/logo/edit/${logoId}`,
           {
             logoImage,
             bgRounded,
@@ -147,4 +148,4 @@ const Logo = ({
   );
 };
 
-export default Logo;
+export default EditLogoC;
