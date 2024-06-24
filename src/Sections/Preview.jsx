@@ -12,6 +12,7 @@ const Preview = ({
   iconColor,
   logoBgColor,
   imageOpacity,
+  user
 }) => {
   const location = useLocation();
 
@@ -28,6 +29,7 @@ const Preview = ({
           iconColor={iconColor}
           logoBgColor={logoBgColor}
           imageOpacity={imageOpacity}
+          user={user}
         />
       ) : (
         <EditLogoC
@@ -40,6 +42,7 @@ const Preview = ({
           iconColor={iconColor}
           logoBgColor={logoBgColor}
           imageOpacity={imageOpacity}
+          user={user}
         />
       )}
     </div>

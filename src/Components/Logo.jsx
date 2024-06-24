@@ -17,6 +17,7 @@ const Logo = ({
   iconColor,
   logoBgColor,
   imageOpacity,
+  user,
 }) => {
   const navigate = useNavigate();
   const [popup, setPopup] = useState(false);
@@ -58,7 +59,7 @@ const Logo = ({
   };
   return (
     <>
-      <Header download={downloadImage} setPopup={setPopup} />
+      <Header download={downloadImage} setPopup={setPopup} user={user} />
       <div
         style={{ padding: `${padding}px` }}
         className="logo border w-[27rem] h-[27rem]"

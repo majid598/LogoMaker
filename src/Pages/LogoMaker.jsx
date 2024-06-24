@@ -152,12 +152,13 @@ const LogoMaker = ({ user }) => {
                 iconColor={iconColor}
                 logoBgColor={logoBgColor}
                 imageOpacity={imageOpacity}
+                user={user}
               />
             </div>
           </>
         ) : (
           <div className="w-full h-full">
-            <Header />
+            <Header user={user} />
             <div>
               {user?.isSubscribed ? (
                 <div className="w-full h-full p-20 flex flex-col items-center">

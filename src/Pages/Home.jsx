@@ -40,7 +40,7 @@ const Home = ({ user }) => {
   return (
     <div className="bg-gray-900 px-20 text-white min-h-screen pt-44">
       {isLoading && <Loader />}
-      <Header />
+      <Header user={user} />
       <div className="absolute right-32 top-36">
         <button
           onClick={() => setMenu((prev) => !prev)}
