@@ -62,9 +62,12 @@ const Home = ({ user }) => {
         </button>
         {menu && (
           <div className="rounded-xl overflow-hidden bg-gray-800 absolute left-1/2 -translate-x-1/2">
-            <button className="px-6 w-full transition-all duration-300 text-center py-2 hover:bg-gray-950 font-semibold">
+            <Link
+              to={"/settings"}
+              className="px-6 inline-block w-full transition-all duration-300 text-center py-2 hover:bg-gray-950 font-semibold"
+            >
               Settings
-            </button>
+            </Link>
             <button
               onClick={logout}
               className="px-6 w-full transition-all duration-300 text-center py-2 hover:bg-gray-950 font-semibold"

@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { FaGoogle } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const server = "http://localhost:5000/";
 
@@ -52,8 +52,6 @@ const Login = ({ user }) => {
   };
   const Login = (e) => {
     e.preventDefault();
-    if (confrimPassword !== signUpInfo.password)
-      return toast.error("passwords aren't match !");
     axios
       .post(`${server}api/v1/user/login`, loginInfo, { withCredentials: true })
       .then(({ data }) => {
@@ -97,6 +95,12 @@ const Login = ({ user }) => {
                 Log in
               </button>
             </form>
+            <Link
+              to="/reset-password"
+              className="text-xs font-semibold mt-4 inline-block"
+            >
+              Forgotten Password?
+            </Link>
             <button
               onClick={click}
               className="mt-5 font-bold text-center w-full p-2 rounded-xl bg-blue-700 flex justify-center gap-2 items-center"

@@ -24,7 +24,7 @@ const CheckOutForm = ({ onSubmit }) => {
 
   return (
     <form onSubmit={onSubmit} className="p-10 text-black">
-      <PaymentElement />
+      {/* <PaymentElement /> */}
     </form>
   );
 };

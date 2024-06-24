@@ -8,6 +8,8 @@ import Login from "./Pages/Login";
 import LogoMaker from "./Pages/LogoMaker";
 import Upgrade from "./Pages/Upgrade";
 import { server } from "./main";
+import Settings from "./Pages/Settings";
+import ResetPassword from "./Pages/ResetPassword";
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -29,6 +31,8 @@ const App = () => {
         <Route path="/upgrade/choose/plan" element={<Upgrade />} />
         <Route path="/login" element={<Login user={user} />} />
         <Route path="/load" element={<Loader />} />
+        <Route path="/settings" element={<Settings user={user} />} />
+        <Route path="/reset-password" element={<ResetPassword user={user} />} />
       </Routes>
       <Toaster position="top-center" />
     </Router>
