@@ -63,7 +63,7 @@ const Login = ({ user }) => {
   };
 
   const click = () => {
-    window.open("http://localhost:5000/api/v1/user/google", "_self");
+    window.open(`${server}api/v1/user/google`, "_self");
   };
 
   return (
