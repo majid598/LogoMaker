@@ -7,10 +7,13 @@ import Loader from "../Components/Loader";
 import LogoComponent from "../Components/LogoComponent";
 import { server } from "../main";
 import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import { userNotExists } from "../redux/reducers/userReducer";
 
 const Home = ({ user }) => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [menu, setMenu] = useState(false);
   const [logos, setLogos] = useState(null);
 
@@ -19,6 +22,7 @@ const Home = ({ user }) => {
       .get(`${server}api/v1/user/logout`, { withCredentials: true })
       .then(({ data }) => {
         navigate("/login");
+        dispatch(userNotExists(true));
         toast.success(data?.message);
       })
       .catch((err) => toast.error(err?.response?.data?.message));

@@ -10,18 +10,20 @@ import Upgrade from "./Pages/Upgrade";
 import { server } from "./main";
 import Settings from "./Pages/Settings";
 import ResetPassword from "./Pages/ResetPassword";
+import { useDispatch, useSelector } from "react-redux";
+import { userExists, userNotExists } from "./redux/reducers/userReducer";
 
 const App = () => {
-  const [user, setUser] = useState(null);
-  // console.log(localStorage)
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.auth);
   useEffect(() => {
     axios
       .get(`${server}api/v1/user/me`, { withCredentials: true })
       .then(({ data }) => {
-        setUser(data.user);
+        dispatch(userExists(data.user));
       })
-      .catch((err) => console.log(err));
-  }, [user]);
+      .catch((err) => dispatch(userNotExists(true)));
+  }, [dispatch]);
   return (
     <Router>
       <Routes>

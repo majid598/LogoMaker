@@ -2,11 +2,13 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { FaGoogle } from "react-icons/fa";
+import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-
-const server = "http://localhost:5000/";
+import { userExists } from "../redux/reducers/userReducer";
+import { server } from "../main";
 
 const Login = ({ user }) => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [loginInfo, setLoginInfo] = useState({
     email: "",
@@ -45,6 +47,7 @@ const Login = ({ user }) => {
           name: "",
           password: "",
         });
+        dispatch(userExists(data.user));
         navigate("/");
         toast.success(data?.message);
       })
@@ -57,6 +60,7 @@ const Login = ({ user }) => {
       .then(({ data }) => {
         setLoginInfo({ email: "", password: "" });
         navigate("/");
+        dispatch(userExists(true));
         toast.success(data?.message);
       })
       .catch((err) => toast.error(err?.response?.data?.message));
