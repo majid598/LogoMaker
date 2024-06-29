@@ -1,23 +1,23 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
-import { Toaster } from "react-hot-toast";
+import { useEffect } from "react";
+import toast, { Toaster } from "react-hot-toast";
+import { useDispatch, useSelector } from "react-redux";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Loader from "./Components/Loader";
+import EmailVerify from "./Pages/EmailVerify";
 import Home from "./Pages/Home";
 import Login from "./Pages/Login";
 import LogoMaker from "./Pages/LogoMaker";
-import Upgrade from "./Pages/Upgrade";
-import { server } from "./main";
-import Settings from "./Pages/Settings";
 import ResetPassword from "./Pages/ResetPassword";
-import { useDispatch, useSelector } from "react-redux";
+import Settings from "./Pages/Settings";
+import { server } from "./main";
 import { userExists, userNotExists } from "./redux/reducers/userReducer";
 import ProtectedRoute from "./Components/ProtectedRoute";
-import EmailVerify from "./Pages/EmailVerify";
 
 const App = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
+
   useEffect(() => {
     axios
       .get(`${server}api/v1/user/me`, { withCredentials: true })
