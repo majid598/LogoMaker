@@ -26,6 +26,22 @@ const Settings = ({ user }) => {
       });
   };
 
+  const deleteAccount = () => {
+    toast.loading("Account Deleting", { duration: 3000 });
+    axios
+      .delete(`${server}api/v1/user/me/profile/delete`, {
+        withCredentials: true,
+      })
+      .then(({ data }) => {
+        navigate("/login");
+        toast.success(data?.message);
+        console.log(data)
+      })
+      .catch((err) => {
+        toast.error(err?.response?.data?.message);
+      });
+  };
+
   return (
     <div className="w-full h-screen bg-gray-900 text-white flex items-center justify-center">
       <div className="w-[24rem] rounded-2xl bg-gray-950 pt-12 p-20">
@@ -52,6 +68,14 @@ const Settings = ({ user }) => {
             Submit
           </button>
         </form>
+        <div className="w-full flex justify-center pt-6">
+          <button
+            onClick={deleteAccount}
+            className="text-sm font-bold bg-red-600 hover:bg-red-700 transition-all duration-300 rounded-lg px-5 py-2"
+          >
+            Delete Account
+          </button>
+        </div>
       </div>
     </div>
   );

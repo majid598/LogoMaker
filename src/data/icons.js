@@ -108,10 +108,3 @@ export const iconList = [
 ];
 
 export const images = ["add.png", "add2.png", "add3.png", "add4.png"];
-
-export const user = {
-  name: "Raju",
-  isSubscribed: false,
-  subscribedAt: Date.now(),
-  logos: localStorage.getItem("logos"),
-};

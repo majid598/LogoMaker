@@ -41,42 +41,44 @@ const Home = () => {
     <div className="bg-gray-900 px-20 text-white min-h-screen pt-44">
       {isLoading && <Loader />}
       <Header user={user} />
-      <div className="absolute right-32 top-36">
-        <button
-          onClick={() => setMenu((prev) => !prev)}
-          className="w-16 h-16 rounded-full  flex items-center justify-center overflow-hidden"
-        >
-          {user && (
-            <>
-              {user?.profile ? (
-                <img
-                  src={user.profile}
-                  className="w-full h-full object-cover"
-                  alt=""
-                />
-              ) : (
-                <FaUser className="text-3xl" />
-              )}
-            </>
+      {user && (
+        <div className="absolute right-32 top-36">
+          <button
+            onClick={() => setMenu((prev) => !prev)}
+            className="w-16 h-16 rounded-full border-2 flex items-center justify-center overflow-hidden"
+          >
+            {user && (
+              <>
+                {user?.profile ? (
+                  <img
+                    src={user.profile}
+                    className="w-full h-full object-cover"
+                    alt=""
+                  />
+                ) : (
+                  <FaUser className="text-3xl" />
+                )}
+              </>
+            )}
+          </button>
+          {menu && (
+            <div className="rounded-xl overflow-hidden bg-gray-800 absolute left-1/2 -translate-x-1/2">
+              <Link
+                to={"/settings"}
+                className="px-6 inline-block w-full transition-all duration-300 text-center py-2 hover:bg-gray-950 font-semibold"
+              >
+                Settings
+              </Link>
+              <button
+                onClick={logout}
+                className="px-6 w-full transition-all duration-300 text-center py-2 hover:bg-gray-950 font-semibold"
+              >
+                Logout
+              </button>
+            </div>
           )}
-        </button>
-        {menu && (
-          <div className="rounded-xl overflow-hidden bg-gray-800 absolute left-1/2 -translate-x-1/2">
-            <Link
-              to={"/settings"}
-              className="px-6 inline-block w-full transition-all duration-300 text-center py-2 hover:bg-gray-950 font-semibold"
-            >
-              Settings
-            </Link>
-            <button
-              onClick={logout}
-              className="px-6 w-full transition-all duration-300 text-center py-2 hover:bg-gray-950 font-semibold"
-            >
-              Logout
-            </button>
-          </div>
-        )}
-      </div>
+        </div>
+      )}
       <h1 className="text-3xl font-semibold">{user?.name}&apos;s Logos</h1>
       <div className="w-full flex flex-wrap mt-10 gap-4 justify-start">
         {logos?.map((i) => (
