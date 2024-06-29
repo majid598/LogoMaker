@@ -7,10 +7,11 @@ import Loader from "../Components/Loader";
 import LogoComponent from "../Components/LogoComponent";
 import { server } from "../main";
 import toast from "react-hot-toast";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { userNotExists } from "../redux/reducers/userReducer";
 
-const Home = ({ user }) => {
+const Home = () => {
+  const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
@@ -36,11 +37,6 @@ const Home = ({ user }) => {
       })
       .catch((err) => console.log(err));
   }, [logos, axios]);
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 4000);
-  }, [isLoading]);
   return (
     <div className="bg-gray-900 px-20 text-white min-h-screen pt-44">
       {isLoading && <Loader />}

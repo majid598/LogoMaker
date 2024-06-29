@@ -12,6 +12,8 @@ import Settings from "./Pages/Settings";
 import ResetPassword from "./Pages/ResetPassword";
 import { useDispatch, useSelector } from "react-redux";
 import { userExists, userNotExists } from "./redux/reducers/userReducer";
+import ProtectedRoute from "./Components/ProtectedRoute";
+import EmailVerify from "./Pages/EmailVerify";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -27,13 +29,15 @@ const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home user={user} />} />
-        <Route path="/logo/make" element={<LogoMaker user={user} />} />
-        <Route path="/logo/edit" element={<LogoMaker user={user} />} />
-        <Route path="/upgrade/choose/plan" element={<Upgrade />} />
-        <Route path="/login" element={<Login user={user} />} />
+        {/* <Route element={<ProtectedRoute user={user} redirect="/login" />}> */}
+          <Route path="/" element={<Home />} />
+          <Route path="/logo/make" element={<LogoMaker user={user} />} />
+          <Route path="/logo/edit" element={<LogoMaker user={user} />} />
+          <Route path="/settings" element={<Settings user={user} />} />
+        {/* </Route> */}
+        <Route path="/verify-email" element={<EmailVerify />} />
         <Route path="/load" element={<Loader />} />
-        <Route path="/settings" element={<Settings user={user} />} />
+        <Route path="/login" element={<Login user={user} />} />
         <Route path="/reset-password" element={<ResetPassword user={user} />} />
       </Routes>
       <Toaster position="top-center" />
