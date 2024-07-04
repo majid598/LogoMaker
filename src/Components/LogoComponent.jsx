@@ -45,9 +45,16 @@ const LogoComponent = ({ i }) => {
         }}
       >
         {i.logoImage ? (
-          <img src={i.logoImage} width={i.iconSize} className="w-full" />
+          <img
+            src={i.logoImage}
+            width={i.iconSize}
+            className="w-full"
+            style={{ rotate: `${i?.iconRotation}deg` }}
+          />
         ) : (
-          <Icon name={i.selectedIcon} size={100} color={i.iconColor} />
+          <div style={{ rotate: `${i?.iconRotation}deg` }}>
+            <Icon name={i.selectedIcon} size={100} color={i.iconColor} />
+          </div>
         )}
       </div>
       <button
