@@ -25,15 +25,15 @@ const App = () => {
         dispatch(userExists(data.user));
       })
       .catch((err) => dispatch(userNotExists(true)));
-  }, [dispatch]);
+  }, [dispatch, user]);
   return (
     <Router>
       <Routes>
         {/* <Route element={<ProtectedRoute user={user} redirect="/login" />}> */}
-          <Route path="/" element={<Home />} />
-          <Route path="/logo/make" element={<LogoMaker user={user} />} />
-          <Route path="/logo/edit" element={<LogoMaker user={user} />} />
-          <Route path="/settings" element={<Settings user={user} />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/logo/make" element={<LogoMaker user={user} />} />
+        <Route path="/logo/edit" element={<LogoMaker user={user} />} />
+        <Route path="/settings" element={<Settings user={user} />} />
         {/* </Route> */}
         <Route path="/verify-email" element={<EmailVerify />} />
         <Route path="/load" element={<Loader />} />
