@@ -9,6 +9,7 @@ const server = "http://localhost:5000/";
 const ResetPassword = ({ user }) => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
+ 
   const [password, setPassword] = useState("");
 
   const [confrimPassword, setConfrimPassword] = useState("");
@@ -37,7 +38,7 @@ const ResetPassword = ({ user }) => {
     <div className="w-full text-white h-screen flex items-center justify-center bg-gray-900">
       <div className="w-[24rem] rounded-2xl bg-gray-950 pt-12 p-20">
         <h1 className="text-2xl font-semibold text-center mb-4">
-          Reset-Password
+          {Reset-Password}
         </h1>
         <form className="w-full flex flex-col gap-2" onSubmit={formSubmit}>
           <input

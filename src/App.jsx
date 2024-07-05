@@ -13,6 +13,7 @@ import Settings from "./Pages/Settings";
 import { server } from "./main";
 import { userExists, userNotExists } from "./redux/reducers/userReducer";
 import ProtectedRoute from "./Components/ProtectedRoute";
+import EmailSent from "./Pages/EmailSent";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -38,6 +39,7 @@ const App = () => {
         <Route path="/verify-email" element={<EmailVerify />} />
         <Route path="/load" element={<Loader />} />
         <Route path="/login" element={<Login user={user} />} />
+        <Route path="/email-sent" element={<EmailSent />} />
         <Route path="/reset-password" element={<ResetPassword user={user} />} />
       </Routes>
       <Toaster position="top-center" />

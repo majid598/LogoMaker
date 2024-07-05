@@ -51,7 +51,7 @@ const Login = ({}) => {
           password: "",
         });
         dispatch(userExists(data.user));
-        navigate("/");
+        navigate("/email-sent");
         toast.success(data?.message);
       })
       .catch((err) => toast.error(err?.response?.data?.message));
