@@ -16,7 +16,8 @@ const Settings = ({ user }) => {
         `${server}api/v1/user/me/profile/edit`,
         { name, profile },
         { headers:{
-          "token":localStorage.getItem("token")
+            "token":localStorage.getItem("token")
+          }
         }
       )
       .then(({ data }) => {
