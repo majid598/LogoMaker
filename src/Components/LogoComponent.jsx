@@ -29,7 +29,9 @@ const LogoComponent = ({ i }) => {
   const handleDelete = () => {
     axios
       .delete(`${server}api/v1/logo/delete/${i._id}`, {
-        withCredentials: true,
+        headers:{
+          "token":localStorage.getItem("token")
+        }
       })
       .then(({ data }) => toast.success(data?.message))
       .catch((err) => toast.error(err?.response?.data?.message));
