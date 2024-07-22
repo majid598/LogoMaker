@@ -27,7 +27,10 @@ const Home = () => {
 
   useEffect(() => {
     axios
-      .get(`${server}api/v1/logo/my/all`, { withCredentials: true })
+      .get(`${server}api/v1/logo/my/all`, { headers:{
+        "token":localStorage.getItem("token")
+      }
+      })
       .then(({ data }) => {
         setLogos(data.logos);
       })
