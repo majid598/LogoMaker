@@ -23,6 +23,19 @@ const Logo = ({
   const [popup, setPopup] = useState(false);
   const [name, setName] = useState("logo");
   const logoRef = useRef(null);
+
+    const clearLocal = () => {
+    localStorage.removeItem("logoImage")
+    localStorage.removeItem("bgRounded")
+    localStorage.removeItem("padding")
+    localStorage.removeItem("iconSize")
+    localStorage.removeItem("selectedIcon")
+    localStorage.removeItem("iconRotation")
+    localStorage.removeItem("iconColor")
+    localStorage.removeItem("logoBgColor")
+    localStorage.removeItem("imageOpacity")
+  }
+  
   const downloadImage = async () => {
     const htmlToImage = await import("html-to-image");
     htmlToImage.toPng(logoRef.current).then(function (dataUrl) {
@@ -50,7 +63,7 @@ const Logo = ({
           link.download = `${name}.png`;
           link.href = dataUrl;
           link.click();
-          localStorage.clear();
+          clearLocal();
           setName("");
           setPopup(false);
           navigate("/");
