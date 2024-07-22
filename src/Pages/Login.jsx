@@ -62,6 +62,7 @@ const Login = ({}) => {
       .post(`${server}api/v1/user/login`, loginInfo, { withCredentials: true })
       .then(({ data }) => {
         setLoginInfo({ email: "", password: "" });
+        localStorage.setItem("token",data?.token) 
         navigate("/");
         dispatch(userExists(true));
         toast.success(data?.message);
