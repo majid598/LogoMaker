@@ -19,14 +19,10 @@ const Home = () => {
   const [logos, setLogos] = useState(null);
 
   const logout = () => {
-    axios
-      .get(`${server}api/v1/user/logout`, { withCredentials: true })
-      .then(({ data }) => {
+        localStorage.removeItem("token")
         navigate("/login");
         dispatch(userNotExists(true));
-        toast.success(data?.message);
-      })
-      .catch((err) => toast.error(err?.response?.data?.message));
+        toast.success("Logouted");
   };
 
   useEffect(() => {
