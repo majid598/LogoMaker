@@ -15,7 +15,9 @@ const Settings = ({ user }) => {
       .put(
         `${server}api/v1/user/me/profile/edit`,
         { name, profile },
-        { withCredentials: true }
+        { headers:{
+          "token":localStorage.getItem("token")
+        }
       )
       .then(({ data }) => {
         navigate("/");
