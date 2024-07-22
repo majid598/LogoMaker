@@ -42,7 +42,10 @@ const EditLogoC = ({
             imageOpacity,
             name,
           },
-          { withCredentials: true }
+          { headers:{
+            "token":localStorage.getItem("token")
+          }
+          }
         )
         .then(({ data }) => {
           const link = document.createElement("a");
