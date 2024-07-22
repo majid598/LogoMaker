@@ -33,7 +33,9 @@ const Settings = ({ user }) => {
     toast.loading("Account Deleting", { duration: 3000 });
     axios
       .delete(`${server}api/v1/user/me/profile/delete`, {
-        withCredentials: true,
+        headers:{
+            "token":localStorage.getItem("token")
+          }
       })
       .then(({ data }) => {
         navigate("/login");
