@@ -17,7 +17,7 @@ import EmailSent from "./Pages/EmailSent";
 
 const App = () => {
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.auth);
+  const { user, loader } = useSelector((state) => state.auth);
 
   useEffect(() => {
     axios
@@ -27,20 +27,22 @@ const App = () => {
       })
       .catch((err) => dispatch(userNotExists(true)));
   }, [dispatch, user]);
-  return (
+  return loader ? <div className="w-full h-screen flex items-center justify-center text-3xl font-semibold">Loading...</div> : (
     <Router>
       <Routes>
-        {/* <Route element={<ProtectedRoute user={user} redirect="/login" />}> */}
-        <Route path="/" element={<Home />} />
-        <Route path="/logo/make" element={<LogoMaker user={user} />} />
-        <Route path="/logo/edit" element={<LogoMaker user={user} />} />
-        <Route path="/settings" element={<Settings user={user} />} />
-        {/* </Route> */}
-        <Route path="/verify-email" element={<EmailVerify />} />
-        <Route path="/load" element={<Loader />} />
-        <Route path="/login" element={<Login user={user} />} />
-        <Route path="/email-sent" element={<EmailSent />} />
-        <Route path="/reset-password" element={<ResetPassword user={user} />} />
+        <Route element={<ProtectedRoute user={user} redirect="/login" />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/logo/make" element={<LogoMaker user={user} />} />
+          <Route path="/logo/edit" element={<LogoMaker user={user} />} />
+          <Route path="/settings" element={<Settings user={user} />} />
+        </Route>
+        <Route element={<ProtectedRoute user={!user} redirect="/" />}>
+          <Route path="/verify-email" element={<EmailVerify />} />
+          <Route path="/load" element={<Loader />} />
+          <Route path="/login" element={<Login user={user} />} />
+          <Route path="/email-sent" element={<EmailSent />} />
+          <Route path="/reset-password" element={<ResetPassword user={user} />} />
+        </Route>
       </Routes>
       <Toaster position="top-center" />
     </Router>
