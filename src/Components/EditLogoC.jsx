@@ -24,6 +24,17 @@ const EditLogoC = ({
   const [name, setName] = useState("logo");
   const logoRef = useRef(null);
   const logoId = localStorage.getItem("logoId");
+  const clearLocal = () => {
+    localStorage.removeItem("logoImage")
+    localStorage.removeItem("bgRounded")
+    localStorage.removeItem("padding")
+    localStorage.removeItem("iconSize")
+    localStorage.removeItem("selectedIcon")
+    localStorage.removeItem("iconRotation")
+    localStorage.removeItem("iconColor")
+    localStorage.removeItem("logoBgColor")
+    localStorage.removeItem("imageOpacity")
+  }
   const downloadImage = async () => {
     const htmlToImage = await import("html-to-image");
     htmlToImage.toPng(logoRef.current).then(function (dataUrl) {
@@ -42,14 +53,17 @@ const EditLogoC = ({
             imageOpacity,
             name,
           },
-          { withCredentials: true }
+          { headers:{
+            "token":localStorage.getItem("token")
+          }
+          }
         )
         .then(({ data }) => {
           const link = document.createElement("a");
           link.download = `${name}.png`;
           link.href = dataUrl;
           link.click();
-          localStorage.clear();
+          clearLocal();
           setName("");
           setPopup(false);
           navigate("/");
