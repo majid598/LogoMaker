@@ -31,9 +31,9 @@ const App = () => {
       })
       .catch((err) => dispatch(userNotExists(true)));
   }, [dispatch, user]);
-  return loader ? <div className="w-full h-screen flex items-center justify-center text-3xl font-semibold bg-gray-900">Loading...</div> : (
+  return loader ? <div className="w-full text-white h-screen flex items-center justify-center text-3xl font-semibold bg-gray-900">Loading...</div> : (
     <Router>
-      <Suspense fallback={<div className="w-full h-screen flex items-center justify-center text-3xl font-semibold bg-gray-900">Loading...</div>}>
+      <Suspense fallback={<div className="w-full text-white h-screen flex items-center justify-center text-3xl font-semibold bg-gray-900">Loading...</div>}>
         <Routes>
           <Route element={<ProtectedRoute isAuthenticated={user} redirect="/login" />}>
             <Route path="/" element={<Home />} />
