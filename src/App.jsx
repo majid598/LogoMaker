@@ -35,13 +35,13 @@ const App = () => {
     <Router>
       <Suspense fallback={<div className="w-full h-screen flex items-center justify-center text-3xl font-semibold bg-gray-900">Loading...</div>}>
         <Routes>
-          <Route element={<ProtectedRoute user={user} redirect="/login" />}>
+          <Route element={<ProtectedRoute isAuthenticated={user} redirect="/login" />}>
             <Route path="/" element={<Home />} />
             <Route path="/logo/make" element={<LogoMaker user={user} />} />
             <Route path="/logo/edit" element={<LogoMaker user={user} />} />
             <Route path="/settings" element={<Settings user={user} />} />
           </Route>
-          <Route element={<ProtectedRoute user={!user} redirect="/" />}>
+          <Route element={<ProtectedRoute isAuthenticated={!user} redirect="/" />}>
             <Route path="/verify-email" element={<EmailVerify />} />
             <Route path="/load" element={<Loader />} />
             <Route path="/login" element={<Login user={user} />} />
