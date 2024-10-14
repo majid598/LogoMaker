@@ -80,7 +80,7 @@ const Home = () => {
             )}
           </button>
           {menu && (
-            <div className="rounded-xl overflow-hidden bg-gray-800 absolute left-1/2 -translate-x-1/2">
+            <div ref={menuRef} className="rounded-xl overflow-hidden bg-gray-800 absolute left-1/2 -translate-x-1/2">
               <Link
                 to={"/settings"}
                 className="px-6 inline-block w-full transition-all duration-300 text-center py-2 hover:bg-gray-950 font-semibold"

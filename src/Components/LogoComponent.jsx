@@ -88,7 +88,7 @@ const LogoComponent = ({ i }) => {
         <CiMenuKebab />
       </button>
       {editMenu && (
-        <div className="w-1/2 rounded-xl overflow-hidden bg-gray-800 absolute right-2 top-10">
+        <div ref={menuRef} className="w-1/2 rounded-xl overflow-hidden bg-gray-800 absolute right-2 top-10">
           <button
             onClick={edit}
             className="px-6 w-full transition-all duration-300 text-center py-2 hover:bg-gray-950 font-semibold"
