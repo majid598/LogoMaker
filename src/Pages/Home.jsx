@@ -21,7 +21,6 @@ const Home = () => {
 
   const logout = () => {
     localStorage.removeItem("token")
-    navigate("/login");
     dispatch(userNotExists(true));
     toast.success("Logouted");
   };
@@ -59,7 +58,7 @@ const Home = () => {
     <div className="bg-gray-900 px-20 text-white min-h-screen pt-44">
       {isLoading && <Loader />}
       <Header user={user} />
-      {!user && (
+      {user && (
         <div className="absolute right-32 top-36">
           <button
             onClick={() => setMenu((prev) => !prev)}
