@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { CiMenuKebab } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
 import { server } from "../main";
@@ -9,6 +9,7 @@ import toast from "react-hot-toast";
 const LogoComponent = ({ i }) => {
   const navigate = useNavigate();
   const [editMenu, setEditMenu] = useState(false);
+  const menuRef = useRef(null);
   //   console.log(localStorage);
   const edit = () => {
     localStorage.setItem("logoId", i._id);
@@ -26,16 +27,37 @@ const LogoComponent = ({ i }) => {
     }, 300);
   };
 
+
+
+  const handleClickOutside = (event) => {
+    if (menuRef.current && !menuRef.current.contains(event.target)) {
+      setIsOpen(false);
+    }
+  };
+
+
+
   const handleDelete = () => {
     axios
       .delete(`${server}api/v1/logo/delete/${i._id}`, {
-        headers:{
-          "token":localStorage.getItem("token")
+        headers: {
+          "token": localStorage.getItem("token")
         }
       })
       .then(({ data }) => toast.success(data?.message))
       .catch((err) => toast.error(err?.response?.data?.message));
   };
+
+
+  useEffect(() => {
+    // Add event listener for clicks outside the menu
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      // Cleanup the event listener on component unmount
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   return (
     <div className="w-[15rem] p-2 border-2 rounded-sm h-[20vh] relative">

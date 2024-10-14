@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { FaPlus, FaUser } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import Header from "../Components/Header";
@@ -17,19 +17,38 @@ const Home = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [menu, setMenu] = useState(false);
   const [logos, setLogos] = useState(null);
+  const menuRef = useRef(null);
 
   const logout = () => {
-        localStorage.removeItem("token")
-        navigate("/login");
-        dispatch(userNotExists(true));
-        toast.success("Logouted");
+    localStorage.removeItem("token")
+    navigate("/login");
+    dispatch(userNotExists(true));
+    toast.success("Logouted");
+  };
+
+
+  const handleClickOutside = (event) => {
+    if (menuRef.current && !menuRef.current.contains(event.target)) {
+      setIsOpen(false);
+    }
   };
 
   useEffect(() => {
+    // Add event listener for clicks outside the menu
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      // Cleanup the event listener on component unmount
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  useEffect(() => {
     axios
-      .get(`${server}api/v1/logo/my/all`, { headers:{
-        "token":localStorage.getItem("token")
-      }
+      .get(`${server}api/v1/logo/my/all`, {
+        headers: {
+          "token": localStorage.getItem("token")
+        }
       })
       .then(({ data }) => {
         setLogos(data.logos);

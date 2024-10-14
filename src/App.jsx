@@ -14,6 +14,7 @@ import { server } from "./main";
 import { userExists, userNotExists } from "./redux/reducers/userReducer";
 import ProtectedRoute from "./Components/ProtectedRoute";
 const EmailSent = lazy(() => import("./Pages/EmailSent"));
+const Test = lazy(() => import("./Test"));
 
 const App = () => {
   const dispatch = useDispatch();
@@ -23,31 +24,43 @@ const App = () => {
     axios
       .get(`${server}api/v1/user/me`, {
         headers: {
-          "token": localStorage.getItem("token")
-        }
+          token: localStorage.getItem("token"),
+        },
       })
       .then(({ data }) => {
         dispatch(userExists(data.user));
       })
       .catch((err) => dispatch(userNotExists(true)));
   }, [dispatch, user]);
-  return loader ? <Loader /> : (
+  return loader ? (
+    <Loader />
+  ) : (
     <Router>
       <Suspense fallback={<Loader />}>
         <Routes>
-          <Route element={<ProtectedRoute isAuthenticated={user} redirect="/login" />}>
+          <Route
+            element={
+              <ProtectedRoute isAuthenticated={user} redirect="/login" />
+            }
+          >
             <Route path="/" element={<Home />} />
             <Route path="/logo/make" element={<LogoMaker user={user} />} />
             <Route path="/logo/edit" element={<LogoMaker user={user} />} />
             <Route path="/settings" element={<Settings user={user} />} />
           </Route>
-          <Route element={<ProtectedRoute isAuthenticated={!user} redirect="/" />}>
+          <Route
+            element={<ProtectedRoute isAuthenticated={!user} redirect="/" />}
+          >
             <Route path="/verify-email" element={<EmailVerify />} />
             <Route path="/load" element={<Loader />} />
             <Route path="/login" element={<Login user={user} />} />
             <Route path="/email-sent" element={<EmailSent />} />
-            <Route path="/reset-password" element={<ResetPassword user={user} />} />
+            <Route
+              path="/reset-password"
+              element={<ResetPassword user={user} />}
+            />
           </Route>
+          <Route path="/test" element={<Test />} />
         </Routes>
       </Suspense>
       <Toaster position="top-center" />
