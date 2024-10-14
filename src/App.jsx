@@ -1,20 +1,19 @@
 import axios from "axios";
-import { useEffect, lazy, Suspense } from "react";
-import toast, { Toaster } from "react-hot-toast";
+import { lazy, Suspense, useEffect } from "react";
+import { Toaster } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Loader from "./Components/Loader";
+import ProtectedRoute from "./Components/ProtectedRoute";
+import { server } from "./main";
+import { userExists, userNotExists } from "./redux/reducers/userReducer";
 const EmailVerify = lazy(() => import("./Pages/EmailVerify"));
 const Home = lazy(() => import("./Pages/Home"));
 const Login = lazy(() => import("./Pages/Login"));
 const LogoMaker = lazy(() => import("./Pages/LogoMaker"));
 const ResetPassword = lazy(() => import("./Pages/ResetPassword"));
 const Settings = lazy(() => import("./Pages/Settings"));
-import { server } from "./main";
-import { userExists, userNotExists } from "./redux/reducers/userReducer";
-import ProtectedRoute from "./Components/ProtectedRoute";
 const EmailSent = lazy(() => import("./Pages/EmailSent"));
-const Test = lazy(() => import("./Test"));
 
 const App = () => {
   const dispatch = useDispatch();
@@ -60,7 +59,6 @@ const App = () => {
               element={<ResetPassword user={user} />}
             />
           </Route>
-          <Route path="/test" element={<Test />} />
         </Routes>
       </Suspense>
       <Toaster position="top-center" />
