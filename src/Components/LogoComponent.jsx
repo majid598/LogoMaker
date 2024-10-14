@@ -31,11 +31,9 @@ const LogoComponent = ({ i }) => {
 
   const handleClickOutside = (event) => {
     if (menuRef.current && !menuRef.current.contains(event.target)) {
-      setIsOpen(false);
+      setEditMenu(false);
     }
   };
-
-
 
   const handleDelete = () => {
     axios

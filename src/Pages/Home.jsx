@@ -29,7 +29,7 @@ const Home = () => {
 
   const handleClickOutside = (event) => {
     if (menuRef.current && !menuRef.current.contains(event.target)) {
-      setIsOpen(false);
+      setMenu(false);
     }
   };
 
@@ -59,7 +59,7 @@ const Home = () => {
     <div className="bg-gray-900 px-20 text-white min-h-screen pt-44">
       {isLoading && <Loader />}
       <Header user={user} />
-      {user && (
+      {!user && (
         <div className="absolute right-32 top-36">
           <button
             onClick={() => setMenu((prev) => !prev)}
