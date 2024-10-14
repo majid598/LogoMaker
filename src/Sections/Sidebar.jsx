@@ -51,21 +51,15 @@ const Sidebar = ({ setIcons, setBackground, setUpgrade, user }) => {
         <button
           onClick={button.handler}
           key={button.name}
-          className={`w-full xl:px-6 px-3 py-3 text-start font-bold flex rounded-lg items-center gap-2 ${
-            selected === button.name ? "bg-white text-gray-900" : ""
-          }`}
+          className={`w-full xl:px-6 px-3 py-3 text-start font-bold flex rounded-lg items-center gap-2 ${selected === button.name ? "bg-white text-gray-900" : ""
+            }`}
         >
           {button.icon} {button.name}
         </button>
       ))}
       <div className="w-full h-[28rem] mt-20">
         {!user?.isSubscribed && (
-          <Add
-            images={images}
-            href="https://burgerpizzapoint.vercel.app/"
-            isClose={isAddClose}
-            onClose={() => setIsAddClose(true)}
-          />
+          <Add />
         )}
       </div>
     </div>

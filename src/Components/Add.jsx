@@ -1,36 +1,18 @@
-import { useEffect, useState } from "react";
-import { IoMdClose } from "react-icons/io";
+import { useEffect } from "react";
 
-const Add = ({ images, href = "", isClose, onClose }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
+const Add = () => {
 
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 4000);
-
-    return () => clearInterval(intervalId);
-  }, [images.length]);
+    // This will ensure that ads are loaded properly
+    window.adsbygoogle && window.adsbygoogle.push({});
+  }, []);
   return (
-    <div className={`w-full h-full p-3 relative ${isClose && "hidden"}`}>
-      <button
-        onClick={onClose}
-        className="absolute top-0 right-0 bg-red-600 p-0.5 rounded-md"
-      >
-        <IoMdClose />
-      </button>
-      <a
-        href={href}
-        target="_blank"
-        className="w-full h-full rounded-xl overflow-hidden inline-block"
-      >
-        <img
-          src={`/assets/${images[currentIndex]}`}
-          alt=""
-          className="w-full h-full"
-        />
-      </a>
-    </div>
+    <div className="adsbygoogle w-full h-full p-3 relative"
+      style={{ display: 'block' }}
+      data-ad-client="ca-pub-7671190139123148"
+      data-ad-slot="your-ad-slot-id"  // Replace with your ad slot ID
+      data-ad-format="auto"
+    />
   );
 };
 
