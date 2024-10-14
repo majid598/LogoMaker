@@ -3,8 +3,14 @@ import { useEffect } from "react";
 const Add = () => {
 
   useEffect(() => {
-    // This will ensure that ads are loaded properly
-    window.adsbygoogle && window.adsbygoogle.push({});
+    // Ensure the adsbygoogle object exists
+    if (typeof window.adsbygoogle !== 'undefined' && window.adsbygoogle.length > 0) {
+      try {
+        window.adsbygoogle.push({});
+      } catch (e) {
+        console.error("Adsbygoogle push error:", e);
+      }
+    }
   }, []);
   return (
     <div className="adsbygoogle w-full h-full p-3 relative"
