@@ -37,16 +37,16 @@ const App = () => {
     <Router>
       <Suspense fallback={<Loader />}>
         <Routes>
-          <Route
+          {/* <Route
             element={
               <ProtectedRoute isAuthenticated={user} redirect="/login" />
             }
-          >
+          > */}
             <Route path="/" element={<Home />} />
             <Route path="/logo/make" element={<LogoMaker user={user} />} />
             <Route path="/logo/edit" element={<LogoMaker user={user} />} />
             <Route path="/settings" element={<Settings user={user} />} />
-          </Route>
+          {/* </Route> */}
           <Route
             element={<ProtectedRoute isAuthenticated={!user} redirect="/" />}
           >

@@ -1,26 +1,17 @@
-import { Dialog, Transition } from "@headlessui/react";
+import {
+  Elements
+} from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import axios from "axios";
-import { Fragment, useEffect, useRef, useState } from "react";
-import toast from "react-hot-toast";
+import { useEffect, useState } from "react";
 import { FaArrowRight, FaCheck } from "react-icons/fa";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Add from "../Components/Add";
 import Header from "../Components/Header";
+import Subscribe from "../Components/Subscribe";
 import Editor from "../Sections/Editor";
 import Preview from "../Sections/Preview";
 import Sidebar from "../Sections/Sidebar";
 import { images } from "../data/icons";
-import { server } from "../main";
-import {
-  CardCvcElement,
-  CardExpiryElement,
-  CardNumberElement,
-  Elements,
-  useElements,
-  useStripe,
-} from "@stripe/react-stripe-js";
-import Subscribe from "../Components/Subscribe";
 
 const ElementProvider = ({ children }) => {
   return (
