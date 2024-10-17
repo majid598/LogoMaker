@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const Header = ({ download, setPopup, user }) => {
   return (
     <>
-      <header className="w-full fixed top-0 left-0">
+      <header className="w-full fixed top-0 left-0 bg-gray-900">
         <nav className="w-full border-b-2 flex justify-between items-center px-20 h-28">
           <Link to={"/"} className="text-4xl font-extrabold">
             Logo Maker

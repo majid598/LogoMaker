@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body{
+  background-color: #111827;
+}
+
 .grid-col-4 {
   grid-template-columns: 19% 28% 35% 18%;
 }

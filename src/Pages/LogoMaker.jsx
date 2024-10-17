@@ -68,7 +68,7 @@ const LogoMaker = ({ user }) => {
   return (
     <ElementProvider>
       <div
-        className={`w-full h-screen bg-gray-900 text-white pt-28 grid ${
+        className={`w-full !h-screen bg-gray-900 text-white pt-28 grid ${
           !upgrade ? "grid-col-4" : "grid-col-3"
         }`}
       >

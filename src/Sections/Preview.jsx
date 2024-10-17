@@ -17,7 +17,7 @@ const Preview = ({
   const location = useLocation();
 
   return (
-    <div className="border-r-2 flex items-center justify-center w-full h-full">
+    <div className="border-r-2 flex items-center justify-center w-full h-[calc(100vh-7rem)]">
       {location.pathname === "/logo/make" ? (
         <Logo
           logoImage={logoImage}
