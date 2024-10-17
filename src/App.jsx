@@ -39,7 +39,7 @@ const App = () => {
         <Routes>
           <Route
             element={
-              <ProtectedRoute isAuthenticated={!user} redirect="/login" />
+              <ProtectedRoute isAuthenticated={user} redirect="/login" />
             }
           >
             <Route path="/" element={<Home />} />
