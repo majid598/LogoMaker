@@ -1,33 +1,36 @@
-import React, { useEffect } from "react"
+import { useEffect, useRef } from "react";
 
 const Add = () => {
-  useEffect(() => {
-    const pushAd = () => {
-      try {
-        const adsbygoogle = window.adsbygoogle
-        console.log({ adsbygoogle })
-        adsbygoogle.push({})
-      } catch (e) {
-        console.error(e)
-      }
-    }
+  const adRef = useRef(null);
 
-    let interval = setInterval(() => {
-      // Check if Adsense script is loaded every 300ms
-      if (window.adsbygoogle) {
-        pushAd()
-        // clear the interval once the ad is pushed so that function isn't called indefinitely
-        clearInterval(interval)
+  useEffect(() => {
+    // Dynamically add the Google AdSense script
+    const script = document.createElement("script");
+    script.async = true;
+    script.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7671190139123148";
+    script.crossOrigin = "anonymous";
+    document.body.appendChild(script);
+
+    // Initialize the ad only when the ref is available
+    script.onload = () => {
+      if (adRef.current) {
+        try {
+          (window.adsbygoogle = window.adsbygoogle || []).push({});
+        } catch (e) {
+          console.error("AdSense error:", e);
+        }
       }
-    }, 300)
+    };
 
     return () => {
-      clearInterval(interval)
-    }
-  }, [])
+      // Clean up script if needed
+      document.body.removeChild(script);
+    };
+  }, []);
   return (
-    <div className="w-full h-full p-3 relative">
+    <div className="adsbygoogle w-full h-full p-3 relative">
       <ins
+        ref={adRef} // Ref to the ins element
         className="adsbygoogle"
         style={{ display: "block" }}
         data-ad-client="ca-pub-7671190139123148"
